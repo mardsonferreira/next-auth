@@ -8,7 +8,7 @@ import {
 import Router from "next/router";
 import { setCookie, parseCookies, destroyCookie } from "nookies";
 
-import { api } from "../src/services/api";
+import { api } from "../src/services/apiClient";
 
 type User = {
     email: string;

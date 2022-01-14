@@ -1,9 +1,10 @@
 import { GetServerSideProps } from "next";
 import { FormEvent, useState } from "react";
-import { parseCookies } from "nookies";
 
 import { useAuthContext } from "../../contexts/AuthContext";
 import { withSSRGuest } from "../utils/withSSRGuest";
+
+import styles from "./index.module.css";
 
 export default function Home() {
     const [email, setEmail] = useState("");
@@ -23,21 +24,23 @@ export default function Home() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
+        <div className={styles.container}>
+            <form onSubmit={handleSubmit} className={styles.content}>
+                <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
 
-            <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
 
-            <button type="submit">Entrar</button>
-        </form>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
     );
 }
 
