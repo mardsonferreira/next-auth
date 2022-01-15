@@ -6,13 +6,10 @@ import { useAuthContext } from "../../contexts/AuthContext";
 import { api } from "../services/apiClient";
 import { setupAPIClient } from "../services/api";
 import { useCan } from "../hooks/useCan";
+import { Can } from "../components/Can";
 
 export default function Dashboard() {
     const { user } = useAuthContext();
-
-    const userCanSeeMetrics = useCan({
-        permissions: ["metrics.list"],
-    });
 
     useEffect(() => {
         api.get("/me")
@@ -22,7 +19,9 @@ export default function Dashboard() {
     return (
         <>
             <h1>Dashboard {user?.email}</h1>
-            {userCanSeeMetrics && <div> Métricas</div>}
+            <Can permissions={["metrics.list"]}>
+                <div> Métricas</div>
+            </Can>
         </>
     );
 }
